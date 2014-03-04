@@ -1,0 +1,12 @@
+{
+	"name": "ractive-decorators-helpers",
+	"version": "0.1.0",
+	"author": "Marty Nelson",
+	"main": "Ractive-decorators-helpers.js",
+	"ignore": [
+		"**/.*",
+		"src",
+		"test",
+		"Gruntfile.js"
+	]
+}

@@ -1,0 +1,14 @@
+{
+	"name": "ractive-decorators-helpers",
+	"repo": "git://github.com/marty/Ractive-decorator-helpers.git",
+	"description": "Ractive-decorators-helpers",
+	"version": "0.1.0",
+	"keywords": [],
+	"dependencies": {},
+	"development": {},
+	"license": "MIT",
+	"main": "Ractive-decorators-helpers.js",
+	"scripts": [
+		"Ractive-decorators-helpers.js"
+	]
+}

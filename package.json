@@ -1,0 +1,33 @@
+{
+  "name": "ractive-decorators-helpers",
+  "version": "0.1.0",
+  "author": "Marty Nelson",
+  "main": "Ractive-decorators-helpers.js",
+  "devDependencies": {
+    "grunt": "~0.4.1",
+    "grunt-contrib-concat": "~0.3.0",
+    "grunt-contrib-qunit": "~0.3.0",
+    "grunt-contrib-uglify": "~0.2.5",
+    "grunt-contrib-jshint": "~0.7.0",
+    "grunt-contrib-copy": "~0.4.1"
+  },
+  "description": "Ractive.js decorator helper plugin. create() for simple decorators, combine() for combining decorators",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "grunt qunit"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/martypdx/Ractive-decorator-helpers"
+  },
+  "keywords": [
+    "Ractive",
+    "decorators"
+  ],
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/martypdx/Ractive-decorator-helpers/issues"
+  }
+}
