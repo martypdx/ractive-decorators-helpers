@@ -54,8 +54,12 @@ header .download {
 	float: left;
 }
 
-li.more-plugins {
+header li {
+	margin-top: 10px;
+}
+span.more-plugins {
 	margin-top: 20px;
+	float: right;
 }
 
 code {
