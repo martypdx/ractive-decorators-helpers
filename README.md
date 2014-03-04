@@ -28,7 +28,7 @@ Currently two helper methods:
 - `combine()` for combining decorators. Ractive currently only allows one dectorator per element. This function creates a decorator that allows the use of multiple decorators
 		
 The helper functions are exposed as `Ractive.decorators.create` and `Ractive.decorators.combine`. 
-Please note that they are meant to be invoked and thus will __not__ work as decorators themeselves.
+Please note that they are meant to be invoked to create a decorator,  and thus will __not__ work as decorators themeselves.
 
 #### `.create(_fn_)`
 
