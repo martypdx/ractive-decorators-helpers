@@ -2,7 +2,7 @@
 <html lang='en-GB'>
 <head>
 	<meta charset='utf-8'>
-	<title>Ractive.js helpers decorator plugin</title>
+	<title>Ractive.js decorator helper plugin</title>
 
 	<!-- CSS -->
 	<link href='http://fonts.googleapis.com/css?family=Voltaire' rel='stylesheet' type='text/css'>
@@ -19,12 +19,21 @@
 	<a class='forkme' href='https://github.com/martypdx/Ractive-decorator-helpers'>Fork me on GitHub</a>
 
 	<header>
-		<h1>Ractive.js helpers decorator plugin</h1>
-		<p class='strap'>
-			<span class='download'>download:&nbsp;&nbsp;<a href='https://raw.github.com/martypdx/Ractive-decorator-helpers/master/Ractive-decorators-helpers.js'>Ractive-decorators-helpers.js</a>&nbsp;&nbsp;&nbsp;<a href='https://raw.github.com/martypdx/Ractive-decorator-helpers/master/Ractive-decorators-helpers.min.js'>Ractive-decorators-helpers.min.js</a></span>
-		
-			<span class='more-plugins'>...more plugins at <a href='http://ractivejs.org/plugins'>ractivejs.org/plugins</a></span>
-		</p>
+		<h1>Ractive.js decorator helper plugin</h1>
+		<div>
+			download:
+			<ul>
+				<li><a href='https://raw.github.com/martypdx/Ractive-decorator-helpers/master/Ractive-decorators-helpers.js'>Ractive-decorators-helpers.js</a>
+				</li>
+				<li><a href='https://raw.github.com/martypdx/Ractive-decorator-helpers/master/Ractive-decorators-helpers.min.js'>Ractive-decorators-helpers.min.js</a>
+				</li>
+				<li><a href='https://github.com/martypdx/Ractive-decorator-helpers'>github.com/martypdx/Ractive-decorator-helpers</a>
+				</li>
+				<li class='more-plugins'>more plugins at <a href='http://ractivejs.org/plugins'>ractivejs.org/plugins</a></li>
+			</ul>
+			<span class='more-plugins'></span>
+		<p></p>
+		</div>
 	</header>
 
 	<main>
@@ -44,11 +53,11 @@
 		<pre id='demo-code-view-create' class='prettyprint lang-js'></pre>
 		
 		<h2>.combine(<i>[ { n1: d1 }, { n2: d2 }, ... ]</i>)</h2>
-		<p>Wraps the supplied decorators as a single decorator. The supplied array order is preserved in load and update.</p>
+		<p>Wraps the supplied name/decorator pairs as a single decorator. The supplied array order is preserved in load and update.</p>
 		<p>The decorator is used in the template as:</p>
-		<pre class='sample'>decorator="alias: { decorator1: [arg1, arg2, argn], decorator1: [arg1, arg2, argn]}"</pre>
+		<pre class='sample'>decorator="alias: { name1: [arg1, arg2, argn], name2: [arg1, arg2, argn]}"</pre>
 		<p>For single argument decortors, the array is optional:</p>
-		<pre class='sample'>decorator="alias: { decorator1: arg1, decorator1: [arg1, arg2]}"</pre>
+		<pre class='sample'>decorator="alias: { name1: arg1, name2: [arg1, arg2]}"</pre>
 	
 		<div id='demo-combine' class='clearfix'></div>
 		<pre id='demo-template-view-combine' class='prettyprint lang-html'></pre>

@@ -43,15 +43,15 @@ colorize: Ractive.decorators.create(function(color){
 		
 #### `.combine(_[ { n1: d1 }, { n2: d2 }, ... ]_)`
 
-Wraps the supplied decorators as a single decorator. The supplied array order is preserved in load and update.
+Wraps the supplied name/decorator pairs as a single decorator. The supplied array order is preserved in load and update.
 
 The decorator is used in the template as:
 ```
-decorator="alias: { decorator1: [arg1, arg2, argn], decorator1: [arg1, arg2, argn]}"
+decorator="alias: { name1: [arg1, arg2, argn], name2: [arg1, arg2, argn]}"
 ```
 For single argument decortors, the array is optional:
 ```
-decorator="alias: { decorator1: arg1, decorator1: [arg1, arg2]}"
+decorator="alias: { name1: arg1, name2: [arg1, arg2]}"
 ```
 Example usage:
 ```

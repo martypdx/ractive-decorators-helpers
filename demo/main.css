@@ -37,7 +37,7 @@ header h1 {
 	margin: 0 0 0.5em 0;
 }
 
-header p {
+header div {
 	padding: 0;
 	margin: 0 0 2em 0;
 	padding: 0.5em 0.5em 0 0.5em;
@@ -54,8 +54,8 @@ header .download {
 	float: left;
 }
 
-header .more-plugins {
-	float: right;
+li.more-plugins {
+	margin-top: 20px;
 }
 
 code {
