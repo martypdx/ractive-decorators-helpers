@@ -87,7 +87,7 @@ a:visited {
 	font-family: Voltaire;
 }
 
-#demo, pre {
+#demo-create, #demo-combine, pre {
 	display: block;
 	padding: 0.5em;
 	margin: 0 0 1em 0;
@@ -103,7 +103,7 @@ pre {
 	overflow-x: auto;
 }
 
-pre:before, #demo:before {
+pre:not(.sample):before, #demo-create:before, #demo-combine:before {
 	content: 'demo';
 	display: block;
 	border-bottom: 1px solid rgb(240,240,240);

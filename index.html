@@ -16,24 +16,44 @@
 
 <body>
 
-	<!-- if the project is on GitHub, add a fork me button! -->
-	<!-- <a class='forkme' href='https://github.com/you/repo'>Fork me on GitHub</a> -->
+	<a class='forkme' href='https://github.com/martypdx/Ractive-decorator-helpers'>Fork me on GitHub</a>
 
 	<header>
 		<h1>Ractive.js helpers decorator plugin</h1>
 		<p class='strap'>
-			<span class='download'>download: <a href='[TODO]'>Ractive-decorators-helpers.js</a></span>
-			<span class='more-plugins'>more plugins at <a href='http://ractivejs.org/plugins'>ractivejs.org/plugins</a></span>
+			<span class='download'>download:&nbsp;&nbsp;<a href='https://raw.github.com/martypdx/Ractive-decorator-helpers/master/Ractive-decorators-helpers.js'>Ractive-decorators-helpers.js</a>&nbsp;&nbsp;&nbsp;<a href='https://raw.github.com/martypdx/Ractive-decorator-helpers/master/Ractive-decorators-helpers.min.js'>Ractive-decorators-helpers.min.js</a></span>
+		
+			<span class='more-plugins'>...more plugins at <a href='http://ractivejs.org/plugins'>ractivejs.org/plugins</a></span>
 		</p>
 	</header>
 
 	<main>
-		<p>TODO A description of the plugin goes here...</p>
+		<p>Ractive.js decorator helper plugin.</p>
+		<p>Currently two helper methods:</p>
+		<ul>
+			<li><code>create()</code> for simple decorators that need no teardown and use the same function for initial load and update.</li>
+			<li><code>combine()</code> for combining decorators. Ractive currently only allows one dectorator per element. This function creates a decorator that allows the use of multiple decorators</li>
+		</ul>
+		<p>The helper functions are exposed as <code>Ractive.decorators.create</code> and <code>Ractive.decorators.combine</code>. Please note that they are meant to be invoked and thus will <strong>not</strong> work as decorators themeselves.</p>
 
-		<div id='demo' class='clearfix'></div>
-
-		<pre id='demo-template-view' class='prettyprint lang-html'></pre>
-		<pre id='demo-code-view' class='prettyprint lang-js'></pre>
+		<h2>.create(<i>fn</i>)</h2>
+		<p>Wraps the supplied function as a decorator, called both at load and update. No-op teardown functionality.</p>
+		<p><code>this</code> in the function refers to the decorated node.</p>
+		<div id='demo-create' class='clearfix'></div>
+		<pre id='demo-template-view-create' class='prettyprint lang-html'></pre>
+		<pre id='demo-code-view-create' class='prettyprint lang-js'></pre>
+		
+		<h2>.combine(<i>[ { n1: d1 }, { n2: d2 }, ... ]</i>)</h2>
+		<p>Wraps the supplied decorators as a single decorator. The supplied array order is preserved in load and update.</p>
+		<p>The decorator is used in the template as:</p>
+		<pre class='sample'>decorator="alias: { decorator1: [arg1, arg2, argn], decorator1: [arg1, arg2, argn]}"</pre>
+		<p>For single argument decortors, the array is optional:</p>
+		<pre class='sample'>decorator="alias: { decorator1: arg1, decorator1: [arg1, arg2]}"</pre>
+	
+		<div id='demo-combine' class='clearfix'></div>
+		<pre id='demo-template-view-combine' class='prettyprint lang-html'></pre>
+		<pre id='demo-code-view-combine' class='prettyprint lang-js'></pre>
+	
 	</main>
 
 	<!-- add additional info such as your homepage here, if you want -->
@@ -42,24 +62,62 @@
 	</footer>
 
 	<!-- Demo template -->
-	<script id='demo-template' type='text/ractive'>
-		<!-- TODO -->
-		<p>This is a demo of the plugin</p>
+	<script id='demo-template-create' type='text/ractive'>
+		<p decorator="colorize: 'blue'">This is a demo of the create() helper</p>
+	</script>
+
+	<script id='demo-template-combine' type='text/ractive'>
+		<p decorator="styleMe: { color: '{{color}}', font: ['bold', '{{pt}}'] }">
+			This is a demo of the combine() helper
+		</p>
 	</script>
 
 	<!-- Dependencies -->
-	<script src='lib/Ractive-legacy.js'></script>
+	<script src='lib/Ractive.js'></script>
 	<script src='Ractive-decorators-helpers.js'></script>
 
 	<!-- Demo code -->
-	<script id='demo-code'>
-		// TODO
-		ractive = new Ractive({
-			el: 'demo',
-			template: '#demo-template'
+	<script id='demo-code-create'>
+		var ractive = new Ractive({
+			el: '#demo-create',
+			template: '#demo-template-create',
+			decorators: {
+				colorize: Ractive.decorators.create(function(color){
+					//"this" refers to the decorated node
+					this.style.color = color 
+				})
+			}
 		});
 	</script>
 
+	<!-- Demo code -->
+	<script id='demo-code-combine'>
+		var decorators = Ractive.decorators,
+			combined = decorators.combine([
+				{
+					color: decorators.create(function(color){
+						this.style.color = color 
+					})
+				},
+				{
+					font: decorators.create(function(weight, pt){
+						this.style.fontWeight = weight
+						this.style.fontSize = pt + 'pt'
+					})		
+				}
+			]),
+			ractive = new Ractive({
+				el: '#demo-combine',
+				template: '#demo-template-combine',
+				decorators: {
+					styleMe: combined
+				},
+				data : {
+					color: 'green',
+					pt: 20
+				}
+			})
+	</script>
 	<!-- Insert code into the page -->
 	<script src='demo/prettify.js'></script>
 	<script src='demo/demo.js'></script>

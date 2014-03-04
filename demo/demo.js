@@ -67,13 +67,19 @@
 		}).join( '\n' );
 	};
 
-	template = deindent( q( '#demo-template' ).innerHTML );
-	code = deindent( q( '#demo-code' ).innerHTML );
+	function run(name){
+		template = deindent( q( '#demo-template-' + name ).innerHTML );
+		code = deindent( q( '#demo-code-' + name ).innerHTML );
 
-	// insert demo code into the page
-	q( '#demo-template-view' ).textContent = template;
-	q( '#demo-code-view' ).textContent = code;
+		// insert demo code into the page
+		q( '#demo-template-view-' + name ).textContent = template;
+		q( '#demo-code-view-' + name ).textContent = code;
 
+	}
+
+	run('create')
+	run('combine')
+	
 	// activate prettify.js
 	prettyPrint();
 
