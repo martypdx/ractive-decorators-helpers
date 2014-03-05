@@ -30,7 +30,7 @@ Currently two helper methods:
 The helper functions are exposed as `Ractive.decorators.create` and `Ractive.decorators.combine`. 
 Please note that they are meant to be invoked to create a decorator,  and thus will __not__ work as decorators themeselves.
 
-#### `.create(_fn_)`
+#### .create( fn )
 
 Wraps the supplied function as a decorator, called both at load and update. No-op teardown functionality.
 `this` in the function refers to the decorated node.
@@ -41,7 +41,7 @@ colorize: Ractive.decorators.create(function(color){
 })
 ```
 		
-#### `.combine(_[ { n1: d1 }, { n2: d2 }, ... ]_)`
+#### .combine( [ { n1: d1 }, { n2: d2 }, ... ] )`
 
 Wraps the supplied name/decorator pairs as a single decorator. The supplied array order is preserved in load and update.
 
