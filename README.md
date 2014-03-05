@@ -41,7 +41,7 @@ colorize: Ractive.decorators.create(function(color){
 })
 ```
 		
-#### .combine( [ { n1: d1 }, { n2: d2 }, ... ] )`
+#### .combine( [ { n1: d1 }, { n2: d2 }, ... ] )
 
 Wraps the supplied name/decorator pairs as a single decorator. The supplied array order is preserved in load and update.
 
