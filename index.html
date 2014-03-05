@@ -73,13 +73,32 @@
 
 	<!-- Demo template -->
 	<script id='demo-template-create' type='text/ractive'>
-		<p decorator="colorize: 'blue'">This is a demo of the create() helper</p>
+		<p decorator="colorize: '{{color}}'">This is a demo of the create() helper</p>
+
+		<label>Color:
+			<select value="{{color}}">
+				<option value="blue">blue</option>
+				<option value="green" selected>green</option>
+				<option value="red">red</option>
+			</select>
+		</label>
 	</script>
 
 	<script id='demo-template-combine' type='text/ractive'>
 		<p decorator="styleMe: { color: '{{color}}', font: ['bold', '{{pt}}'] }">
 			This is a demo of the combine() helper
 		</p>
+
+		<label>Color:
+			<select value="{{color}}">
+				<option value="blue">blue</option>
+				<option value="green" selected>green</option>
+				<option value="red">red</option>
+			</select>
+		</label>
+		<label>Font size:
+			<input type='range' min=8 max=48 value='{{pt}}'/>
+		</label>
 	</script>
 
 	<!-- Dependencies -->
@@ -93,9 +112,11 @@
 			template: '#demo-template-create',
 			decorators: {
 				colorize: Ractive.decorators.create(function(color){
-					this.style.color = color //"this" refers to the decorated node
+					//"this" refers to the decorated node
+					this.style.color = color 
 				})
-			}
+			},
+			data: { color: 'blue' }
 		});
 	</script>
 
