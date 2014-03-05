@@ -46,14 +46,14 @@
 		</ul>
 		<p>The helper functions are exposed as <code>Ractive.decorators.create</code> and <code>Ractive.decorators.combine</code>. Please note that they are meant to be invoked to create a decorator, and thus will <strong>not</strong> work as decorators themeselves.</p>
 
-		<h2>.create(<i>fn</i>)</h2>
+		<h2>.create( fn )</h2>
 		<p>Wraps the supplied function as a decorator, called both at load and update. No-op teardown functionality.</p>
 		<p><code>this</code> in the function refers to the decorated node.</p>
 		<div id='demo-create' class='clearfix'></div>
 		<pre id='demo-template-view-create' class='prettyprint lang-html'></pre>
 		<pre id='demo-code-view-create' class='prettyprint lang-js'></pre>
 		
-		<h2>.combine(<i>[ { n1: d1 }, { n2: d2 }, ... ]</i>)</h2>
+		<h2>.combine( [ { n1: d1 }, { n2: d2 }, ... ])</h2>
 		<p>Wraps the supplied name/decorator pairs as a single decorator. The supplied array order is preserved in load and update.</p>
 		<p>The decorator is used in the template as:</p>
 		<pre class='sample'>decorator="alias: { name1: [arg1, arg2, argn], name2: [arg1, arg2, argn]}"</pre>
@@ -93,8 +93,7 @@
 			template: '#demo-template-create',
 			decorators: {
 				colorize: Ractive.decorators.create(function(color){
-					//"this" refers to the decorated node
-					this.style.color = color 
+					this.style.color = color //"this" refers to the decorated node
 				})
 			}
 		});
