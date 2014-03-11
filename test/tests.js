@@ -92,6 +92,46 @@
 		t.htmlEqual(fixture.innerHTML, '<p attr="boop"></p>')
 	})
 
+	test('Ractive instance available as this', function (t) {
+		var decoratorThis
+
+		var ractive = new Ractive({
+        	el: 'qunit-fixture',
+        	template: '<p decorator="combined: decorate">',
+	        decorators: {
+	            combined: decorators.combine([
+	                { 
+	                	decorate: function(){
+					        decoratorThis = this
+					        return { teardown: function(){} }
+					    }
+	            	}])
+	        }
+    	})
+
+		assert.equal(decoratorThis, ractive)
+	})
+
+	test('object with teardown must be supplied by individual decorators', function (t) {
+
+		throws(
+			function(){
+				new Ractive({
+		        	el: 'qunit-fixture',
+		        	template: '<p decorator="combined: decorate">',
+			        decorators: {
+			            combined: decorators.combine([
+			                { 
+			                	decorate: function(){
+							        //should throw
+							    }
+			            	}])
+			        }
+		    	})
+			}
+		)
+	})
+
 	test('Works with multiple arguments passed in array', function (t) {
 		var ractive = new Ractive({
         	el: 'qunit-fixture',

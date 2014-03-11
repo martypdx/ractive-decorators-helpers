@@ -3,9 +3,14 @@
 	Ractive-decorators-helpers
 	==========================
 
-	Version 0.1.0.
+	Version 0.1.1.
 
-	<< description goes here... >>
+	Currently two helper methods:
+		- .create() for simple decorators that need no teardown and 
+						use the same function for initial load and update.
+		- .combine() for combining decorators. Ractive currently only allows 
+						one dectorator per element. This function creates a 
+						decorator that allows the use of multiple decorators
 
 	==========================
 
@@ -26,7 +31,7 @@
 		// the return value
 		require( 'Ractive-decorators-helpers' );
 
-	<< more specific instructions for this plugin go here... >>
+	see http://martypdx.github.io/Ractive-decorator-helpers/ for demo and examples
 
 */
 
@@ -78,25 +83,32 @@
 	
 	if(!Array.isArray) {
 	  Array.isArray = function (vArg) {
-	    var isArray;
+		var isArray;
 
-	    isArray = vArg instanceof Array;
+		isArray = vArg instanceof Array;
 
-	    return isArray;
+		return isArray;
 	  };
 	}
 
 	Ractive.decorators.combine = function(wrapped){
 		 
 		return function(node, toCall){
-			var decorators = []
+			var decorators = [],
+				ractive = this
 
 			wrapped.forEach( function(d){
 				var name = Object.keys(d)[0],
 					fn = d[name],
 					callArgs = toCall[name],
 					args = callArgs ? [node].concat(callArgs) : [node],
-					result = fn.apply(null, args)
+					result = fn.apply(ractive, args)
+
+				
+				if ( !result || !result.teardown ) {
+					throw new Error( 'Decorator definition "' + name + '" must return an object with a teardown method' );
+				}
+				
 
 				result._name = name
 				decorators.push(result)
