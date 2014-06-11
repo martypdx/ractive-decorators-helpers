@@ -44,7 +44,7 @@
 			<li><code>create()</code> for simple decorators that need no teardown and use the same function for initial load and update.</li>
 			<li><code>combine()</code> for combining decorators. Ractive currently only allows one dectorator per element. This function creates a decorator that allows the use of multiple decorators</li>
 		</ul>
-		<p>The helper functions are exposed as <code>Ractive.decorators.create</code> and <code>Ractive.decorators.combine</code>. Please note that they are meant to be invoked to create a decorator, and thus will <strong>not</strong> work as decorators themeselves.</p>. Also, the <code>Ractive.decorators.create</code> is <strong>not</strong> required in order to use <code>Ractive.decorators.combine</code>, through the examples below make use of it.
+		<p>The helper functions are exposed as <code>Ractive.decorators.create</code> and <code>Ractive.decorators.combine</code>. Please note that they are meant to be invoked to create a decorator, and thus will <strong>not</strong> work as decorators themeselves. Also note that <code>Ractive.decorators.create</code> is <strong>not</strong> required in order to use <code>Ractive.decorators.combine</code>, through the examples below make use of it.</p>
 
 		<h2>.create( fn )</h2>
 		<p>Wraps the supplied function as a decorator, called both at load and update. No-op teardown functionality.</p>

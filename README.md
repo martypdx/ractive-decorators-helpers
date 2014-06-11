@@ -26,9 +26,10 @@ require( 'ractive-decorators-helpers' );
 Currently two helper methods:
 - `create()` for simple decorators that need no teardown and use the same function for initial load and update.
 - `combine()` for combining decorators. Ractive currently only allows one dectorator per element. This function creates a decorator that allows the use of multiple decorators
-		
-The helper functions are exposed as `Ractive.decorators.create` and `Ractive.decorators.combine`. 
+
+The helper functions are exposed as `Ractive.decorators.create` and `Ractive.decorators.combine`.
 Please note that they are meant to be invoked to create a decorator,  and thus will __not__ work as decorators themeselves.
+Also note that `Ractive.decorators.create` is **not** required in order to use `Ractive.decorators.combine`, through the examples below make use of it.
 
 #### .create( fn )
 
@@ -37,10 +38,10 @@ Wraps the supplied function as a decorator, called both at load and update. No-o
 ```
 colorize: Ractive.decorators.create(function(color){
 	//"this" refers to the decorated node
-	this.style.color = color 
+	this.style.color = color
 })
 ```
-		
+
 #### .combine( [ { n1: d1 }, { n2: d2 }, ... ] )
 
 Wraps the supplied name/decorator pairs as a single decorator. The supplied array order is preserved in load and update.
@@ -59,14 +60,14 @@ var decorators = Ractive.decorators,
 	combined = decorators.combine([
 		{
 			color: decorators.create(function(color){
-				this.style.color = color 
+				this.style.color = color
 			})
 		},
 		{
 			font: decorators.create(function(weight, pt){
 				this.style.fontWeight = weight
 				this.style.fontSize = pt + 'pt'
-			})		
+			})
 		}
 	]),
 	ractive = new Ractive({
