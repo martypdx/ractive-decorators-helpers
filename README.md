@@ -47,15 +47,20 @@ colorize: Ractive.decorators.create(function(color){
 Wraps the supplied name/decorator pairs as a single decorator. The supplied array order is preserved in load and update.
 
 The decorator is used in the template as:
-```
+```html
 decorator="alias: { name1: [arg1, arg2, argn], name2: [arg1, arg2, argn]}"
 ```
 For single argument decortors, the array is optional:
-```
+```html
 decorator="alias: { name1: arg1, name2: [arg1, arg2]}"
 ```
-Example usage:
+You do not need to include all combined decorators:
+```html
+decorator="alias: { name1: arg1 }"
 ```
+
+Example usage:
+```js
 var decorators = Ractive.decorators,
 	combined = decorators.combine([
 		{
