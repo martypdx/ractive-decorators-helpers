@@ -1,7 +1,7 @@
 Ractive.js decorator helpers plugin
 ===================================
 
-[See the demo here.](https://martypdx.github.io/ractive-decorator-helpers)
+[See the demo here.](https://martypdx.github.io/ractive-decorators-helpers)
 
 *Find more Ractive.js plugins [here](http://docs.ractivejs.org/latest/plugins)*
 
