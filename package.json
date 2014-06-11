@@ -2,7 +2,7 @@
   "name": "ractive-decorators-helpers",
   "version": "0.1.1",
   "author": "Marty Nelson",
-  "main": "Ractive-decorators-helpers.js",
+  "main": "ractive-decorators-helpers.js",
   "devDependencies": {
     "grunt": "~0.4.1",
     "grunt-contrib-concat": "~0.3.0",
@@ -20,7 +20,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/martypdx/Ractive-decorator-helpers"
+    "url": "https://github.com/martypdx/ractive-decorators-helpers"
   },
   "keywords": [
     "Ractive",
@@ -28,6 +28,6 @@
   ],
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/martypdx/Ractive-decorator-helpers/issues"
+    "url": "https://github.com/martypdx/ractive-decorators-helpers/issues"
   }
 }

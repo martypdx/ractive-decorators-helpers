@@ -1,7 +1,7 @@
 module.exports = {
 	bundle: {
-		src: 'src/Ractive-decorators-helpers.js',
-		dest: 'tmp/Ractive-decorators-helpers.js'
+		src: 'src/ractive-decorators-helpers.js',
+		dest: 'tmp/ractive-decorators-helpers.js'
 	},
 	options: {
 		process: {
