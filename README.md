@@ -88,7 +88,7 @@ var decorators = Ractive.decorators,
 	})
 ```
 
-[See the demo for full examples.](https://martypdx.github.io/ractive-decorator-helpers)
+[See the demo for full examples.](https://martypdx.github.io/ractive-decorators-helpers)
 
 License
 -------
