@@ -6,10 +6,10 @@
 	Version <%= VERSION %>.
 
 	Currently two helper methods:
-		- .create() for simple decorators that need no teardown and 
+		- .create() for simple decorators that need no teardown and
 						use the same function for initial load and update.
-		- .combine() for combining decorators. Ractive currently only allows 
-						one dectorator per element. This function creates a 
+		- .combine() for combining decorators. Ractive currently only allows
+						one dectorator per element. This function creates a
 						decorator that allows the use of multiple decorators
 
 	==========================
@@ -69,7 +69,7 @@
 			//note: fn.bind(node) fails in grunt:qunit :(
 
 			fn.apply(node, args)
-			
+
 			function _fn(){
 				fn.apply(node, arguments)
 			}
@@ -78,9 +78,9 @@
 				teardown: function(){},
 				update: _fn
 			}
-		} 
+		}
 	}
-	
+
 	if(!Array.isArray) {
 	  Array.isArray = function (vArg) {
 		var isArray;
@@ -92,32 +92,34 @@
 	}
 
 	Ractive.decorators.combine = function(wrapped){
-		 
+
 		return function(node, toCall){
 			var decorators = [],
 				ractive = this
 
 			wrapped.forEach( function(d){
-				var name = Object.keys(d)[0],
-					fn = d[name],
-					callArgs = toCall[name],
+				var callArgs, name = Object.keys(d)[0];
+
+				if( !(callArgs = toCall[name]) ) { return; }
+
+				var	fn = d[name],
 					args = callArgs ? [node].concat(callArgs) : [node],
 					result = fn.apply(ractive, args)
 
-				
+
 				if ( !result || !result.teardown ) {
 					throw new Error( 'Decorator definition "' + name + '" must return an object with a teardown method' );
 				}
-				
+
 
 				result._name = name
 				decorators.push(result)
-				
+
 			})
-			
+
 			return {
 				teardown: function(){
-					decorators.forEach(function(d){ 
+					decorators.forEach(function(d){
 						d.teardown()
 					})
 				},
@@ -126,7 +128,7 @@
 						var values = toUpdate[d._name]
 						if(!Array.isArray(values)) { values = [values]}
 						d.update.apply(node, values)
-					})                   
+					})
 				}
 			};
 		};

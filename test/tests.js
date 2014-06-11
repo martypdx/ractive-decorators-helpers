@@ -3,7 +3,7 @@
 
 (function () {
 
-	var fixture = document.getElementById('qunit-fixture'), 
+	var fixture = document.getElementById('qunit-fixture'),
 		decorators = Ractive.decorators
 
 	test('Create simple decorator with update', function (t) {
@@ -19,21 +19,22 @@
 				attrValue: 'bar'
 			}
     	})
-	
+
 		t.htmlEqual(fixture.innerHTML, '<p foo="bar"></p>')
 		ractive.set('attrValue', 'bizz')
 		t.htmlEqual(fixture.innerHTML, '<p foo="bizz"></p>')
-		
+
 	})
 
 	function combineTest(name, template){
+
 		test('Combine decorators', function (t) {
 			var ractive = new Ractive({
 	        	el: 'qunit-fixture',
-	        	template: '<p decorator="combined: { attr1: [\'{{attr1}}\'], attr2: [\'{{attr2}}\'] }">',
+	        	template: template,
 		        decorators: {
 		            combined: decorators.combine([
-		                { 
+		                {
 		                	attr1: decorators.create(function(value){
 						        this.setAttribute('attr1',value)
 						    })
@@ -58,8 +59,41 @@
 			t.htmlEqual(fixture.innerHTML, '<p attr1="boop" attr2="beep"></p>')
 		})
     }
+
     combineTest('Combine decorators', '<p decorator="combined: { attr1: [\'{{attr1}}\'], attr2: [\'{{attr2}}\'] }">')
     combineTest('Single value works as array', '<p decorator="combined: { attr1: \'{{attr1}}\', attr2: [\'{{attr2}}\'] }">')
+
+	test('Not all combined decorators are required', function (t) {
+		var ractive = new Ractive({
+        	el: 'qunit-fixture',
+        	template: '<p decorator="combined: { attr1: [\'{{attr1}}\'] }">',
+	        decorators: {
+	            combined: decorators.combine([
+	                {
+	                	attr1: decorators.create(function(value){
+					        this.setAttribute('attr1',value)
+					    })
+	            	},
+	            	{
+		                attr2: decorators.create(function(value){
+					        this.setAttribute('attr2',value)
+					    })
+					}
+	            ])
+	        },
+	        data: {
+	            attr1: 'foo',
+	            attr2: 'bar'
+	        }
+    	})
+
+		t.htmlEqual(fixture.innerHTML, '<p attr1="foo"></p>')
+		ractive.set('attr1', 'blah')
+		t.htmlEqual(fixture.innerHTML, '<p attr1="blah"></p>')
+		ractive.set({ attr1: 'boop', attr2: 'beep' })
+		t.htmlEqual(fixture.innerHTML, '<p attr1="boop"></p>')
+	})
+
 
 	test('Order is enforced based on construction order of combined decorator', function (t) {
 		var ractive = new Ractive({
@@ -67,7 +101,7 @@
         	template: '<p decorator="combined: { attr1: \'{{attr1}}\', attr2: \'{{attr2}}\' }">',
 	        decorators: {
 	            combined: decorators.combine([
-	                { 
+	                {
 	                	attr2: decorators.create(function(value){
 					        this.setAttribute('attr',value)
 					    })
@@ -97,10 +131,10 @@
 
 		var ractive = new Ractive({
         	el: 'qunit-fixture',
-        	template: '<p decorator="combined: decorate">',
+        	template: '<p decorator="combined: { decorate: [\'\'] }">',
 	        decorators: {
 	            combined: decorators.combine([
-	                { 
+	                {
 	                	decorate: function(){
 					        decoratorThis = this
 					        return { teardown: function(){} }
@@ -118,12 +152,12 @@
 			function(){
 				new Ractive({
 		        	el: 'qunit-fixture',
-		        	template: '<p decorator="combined: decorate">',
+		        	template: '<p decorator="combined: { decorate: [\'\'] }">',
 			        decorators: {
 			            combined: decorators.combine([
-			                { 
+			                {
 			                	decorate: function(){
-							        //should throw
+							        //should throw because no teardown returned
 							    }
 			            	}])
 			        }
@@ -138,7 +172,7 @@
         	template: '<p decorator="combined: { attr1: [\'{{attr1}}\',\'blue\'] , attr2: \'{{attr2}}\' }">',
 	        decorators: {
 	            combined: decorators.combine([
-	                { 
+	                {
 	                	attr1: decorators.create(function(v1,v2){
 					        this.setAttribute('attr1',v1+v2)
 					    })
