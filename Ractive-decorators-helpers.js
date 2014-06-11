@@ -16,20 +16,20 @@
 
 	Troubleshooting: If you're using a module system in your app (AMD or
 	something more nodey) then you may need to change the paths below,
-	where it says `require( 'Ractive' )` or `define([ 'Ractive' ]...)`.
+	where it says `require( 'ractive' )` or `define([ 'ractive' ]...)`.
 
 	==========================
 
 	Usage: Include this file on your page below Ractive, e.g:
 
-		<script src='lib/Ractive.js'></script>
-		<script src='lib/Ractive-decorators-helpers.js'></script>
+		<script src='lib/ractive.js'></script>
+		<script src='lib/ractive-decorators-helpers.js'></script>
 
 	Or, if you're using a module loader, require this module:
 
 		// requiring the plugin will 'activate' it - no need to use
 		// the return value
-		require( 'Ractive-decorators-helpers' );
+		require( 'ractive-decorators-helpers' );
 
 	see http://martypdx.github.io/Ractive-decorator-helpers/ for demo and examples
 
